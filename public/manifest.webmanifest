@@ -1,0 +1,12 @@
+{
+  "name": "众手成琮 · 良渚玉琮王互动试玩",
+  "short_name": "众手成琮",
+  "description": "良渚玉琮王横屏交互叙事游戏试玩版",
+  "lang": "zh-CN",
+  "start_url": "./",
+  "scope": "./",
+  "display": "fullscreen",
+  "orientation": "landscape",
+  "background_color": "#0d1211",
+  "theme_color": "#0d1211"
+}
