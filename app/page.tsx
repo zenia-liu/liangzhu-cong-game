@@ -1130,14 +1130,6 @@ export default function Home() {
     return () => window.clearTimeout(timer);
   }, [scene, workshopIntro, transition]);
 
-  useEffect(() => {
-    const timer = window.setTimeout(() => {
-      if (scene === 6) setEffects(previous => ({ ...previous, "flood-rise": { ss: -12 } }));
-      if (scene === 7) setEffects(previous => ({ ...previous, "flood-crest": { ss: -12 } }));
-    }, 0);
-    return () => window.clearTimeout(timer);
-  }, [scene]);
-
   const choose = (which: 1 | 2) => {
     const question = which === 1 ? "孔即将接通。此刻，你最牵挂什么？" : "玉琮将成、堤坝将合。此刻，你最想记住什么？";
     const focusEffects: Record<Focus, { effect: StrategyEffect; message: string }> = {
