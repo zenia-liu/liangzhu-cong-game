@@ -1054,6 +1054,19 @@ export default function Home() {
   const floodPressure = [0, 12, 24, 38, 46, 56, 70, 90, 48, 0, 0][scene];
 
   useEffect(() => {
+    const viewport = document.querySelector<HTMLElement>(".stage");
+    if (!viewport) return;
+    const syncScale = () => {
+      const availableWidth = viewport.parentElement?.getBoundingClientRect().width ?? window.innerWidth;
+      const availableHeight = Math.max(260, window.innerHeight - 86);
+      viewport.style.setProperty("--stage-scale", String(Math.min(1, availableWidth / 1500, availableHeight / 820)));
+    };
+    window.addEventListener("resize", syncScale);
+    syncScale();
+    return () => window.removeEventListener("resize", syncScale);
+  }, []);
+
+  useEffect(() => {
     [scene, scene + 1].forEach(index => {
       scenePreloadAssets[index]?.forEach(source => {
         if (preloadedAssets.current.has(source)) return;
