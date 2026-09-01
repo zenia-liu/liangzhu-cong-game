@@ -943,3 +943,34 @@ html,body,#root{width:100%;min-height:100%}body{overscroll-behavior:none}.landsc
 .vn-dialogue[data-scene="1"] .vn-portrait.li>img,.vn-dialogue[data-scene="1"] .vn-portrait.yan>img,.vn-dialogue[data-scene="1"] .vn-portrait.master>img{width:86%;height:94%;margin-top:6%}
 @media(max-width:900px){.vn-dialogue .vn-portrait.li>img,.vn-dialogue .vn-portrait.yan>img,.vn-dialogue .vn-portrait.master>img{width:88%;height:96%;margin-top:4%}}
 .logistics-world .polish-mini{left:56%;top:14%;width:32%;height:65%;background:none;border-radius:0;pointer-events:none}.polish-mini .jade-art{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 20px 23px rgba(0,0,0,.58))}.interaction-polish-cong .polish-drag{z-index:44;left:56%;right:auto;top:14%;bottom:auto;width:32%;height:65%;border-radius:0;clip-path:polygon(8% 20%,92% 20%,100% 84%,86% 96%,15% 96%,0 84%);cursor:crosshair}.interaction-polish-cong .polish-sheen{inset:22% 12% 8%;border-radius:42% 42% 16% 16%;pointer-events:none}
+
+/* Final viewport and type rules: keep the art at its authored scale while
+   bringing every player-facing readout above the phone legibility threshold. */
+.app-shell{height:100dvh;min-height:0;padding:0!important;overflow:hidden;background:#0d1211}
+.topbar{position:fixed;z-index:900;left:max(12px,env(safe-area-inset-left));top:max(12px,env(safe-area-inset-top));height:auto;margin:0;pointer-events:none}
+.topbar>div:first-child,.top-actions button:not(.primary){display:none}.top-actions{pointer-events:auto}
+.top-actions .primary{padding:8px 12px;border-color:rgba(207,218,199,.32);background:rgba(10,17,14,.78);box-shadow:0 7px 20px rgba(0,0,0,.3);font-size:0!important;backdrop-filter:blur(8px)}
+.top-actions .primary::after{content:"选幕";font:500 14px/1 "Songti SC","STSong",serif;letter-spacing:.12em}
+.stage{margin:0 auto!important;border:0!important;border-radius:0!important;box-shadow:none!important}
+.story-line .line-row p{font-size:19px;line-height:1.58}.story-line .line-row span{font-size:14px}
+.interaction-guide small{font-size:12px}.interaction-guide strong{font-size:19px}.interaction-guide p{font-size:15px;line-height:1.48}.interaction-guide span{font-size:13px}
+.strategy-hud{width:290px;padding:14px 16px}.strategy-pressure,.strategy-values>div{grid-template-columns:55px 1fr 34px;gap:10px;font-size:15px}.strategy-values{gap:8px}.strategy-values strong{font-size:18px}
+.strategy-feedback{padding:12px 16px;font-size:17px;line-height:1.45}.interaction-feedback{padding:13px 20px;font-size:19px;line-height:1.46}
+.scratch-progress,.inspection-bridge{padding:7px 12px;font-size:15px}.face-counter span{font-size:13px}.face-counter b{font-size:16px}
+.rhythm-meter{width:260px;height:38px;font-size:14px;line-height:38px}.rhythm-meter i{top:8px;width:22px;height:22px}
+.abrasive-status span,.abrasive-status em{font-size:14px}.abrasive-status b{font-size:18px}.abrasive-result b{font-size:22px}.abrasive-result span{font-size:15px}
+.ridge-status,.carving-status,.stroke-note{font-size:16px}.crack-light-copy b,.station-copy b,.rain-copy b{font-size:18px}.crack-light-copy span,.station-copy span,.rain-copy span{font-size:15px}
+.carving-stones button span,.station-tools button span{font-size:15px}.grind-tools button span,.dual-cut>button span,.basket-chain button span,.boat-check button span,.cong-taps button span{font-size:14px}
+
+@media(max-width:900px) and (orientation:landscape){
+  .topbar{left:max(8px,env(safe-area-inset-left));top:max(8px,env(safe-area-inset-top))}.top-actions .primary{padding:8px 11px}.top-actions .primary::after{font-size:16px}
+  .story-line.vn-box .line-row p{font-size:25px;line-height:1.43}.story-line.vn-box .line-row span{font-size:16px}
+  .interaction-guide{padding:11px 16px 12px 21px}.interaction-guide small{font-size:13px}.interaction-guide strong{font-size:21px}.interaction-guide p{font-size:17px;line-height:1.38}.interaction-guide span{font-size:13px}
+  .strategy-hud{top:9px;right:10px;width:330px;padding:14px 17px}.strategy-pressure,.strategy-values>div{grid-template-columns:64px 1fr 38px;gap:11px;font-size:18px}.strategy-values strong{font-size:22px}
+  .strategy-feedback{top:90px;right:11px;font-size:19px}.interaction-feedback{bottom:64px;font-size:22px;line-height:1.42}
+  .scratch-progress,.inspection-bridge{font-size:17px}.face-counter span{font-size:15px}.face-counter b{font-size:18px}
+  .rhythm-meter{width:285px;height:42px;font-size:16px;line-height:42px}.rhythm-meter i{top:9px;width:24px;height:24px}
+  .abrasive-status span,.abrasive-status em{font-size:16px}.abrasive-status b{font-size:20px}.abrasive-result b{font-size:24px}.abrasive-result span{font-size:17px}
+  .ridge-status,.carving-status,.stroke-note{font-size:18px}.crack-light-copy b,.station-copy b,.rain-copy b{font-size:20px}.crack-light-copy span,.station-copy span,.rain-copy span{font-size:17px}
+  .carving-stones button span,.station-tools button span{font-size:17px}.grind-tools button span,.dual-cut>button span,.basket-chain button span,.boat-check button span,.cong-taps button span{font-size:16px}
+}
