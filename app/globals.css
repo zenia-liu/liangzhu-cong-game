@@ -844,6 +844,32 @@ html,body,#root{width:100%;min-height:100%}body{overscroll-behavior:none}.landsc
 /* Scene seven polishing: the hit region is the depicted jade, not an adjacent empty panel. */
 .stage{width:1500px!important;height:820px!important;min-height:0!important;zoom:var(--stage-scale,1);margin:10px auto 0!important}
 @media(max-width:900px){.stage{margin-top:4px!important}.top-actions .primary{padding-inline:10px;font-size:10px}}
+
+/* Reading-first adjustments: keep the scene restrained, but make dialogue and
+   current-task copy legible after the fixed stage is scaled down on phones. */
+.story-line .line-row span{font-size:11px}
+.story-line .line-row p{font-size:16px;line-height:1.6}
+.interaction-guide small{font-size:9px}
+.interaction-guide strong{font-size:16px}
+.interaction-guide p{font-size:12px;line-height:1.5}
+.interaction-guide span{font-size:10px}
+
+/* The stone is still the supplied jade artwork, now with a clear tool-shaped
+   outline and a small label so the first action can be found immediately. */
+.scribe-stone{width:48px;height:40px;isolation:isolate;filter:drop-shadow(0 0 2px #07100d) drop-shadow(3px 6px 4px rgba(0,0,0,.58))}
+.scribe-stone::before{content:"";position:absolute;z-index:-1;inset:-4px;clip-path:polygon(14% 12%,72% 0,100% 38%,82% 88%,28% 100%,0 60%);background:#e6d39b;box-shadow:0 0 13px rgba(232,208,145,.78)}
+.scribe-stone img{filter:saturate(.52) brightness(.88) contrast(1.22)}
+.scribe-stone b{position:absolute;left:50%;top:calc(100% + 4px);transform:translateX(-50%) rotate(18deg);padding:2px 5px;border-radius:999px;background:rgba(10,16,13,.86);color:#f0e4c6;font:500 9px/1 "Songti SC","STSong",serif;letter-spacing:.08em;white-space:nowrap;text-shadow:none}
+
+@media(max-width:900px) and (orientation:landscape){
+  .story-line.vn-box .line-row p{font-size:19px;line-height:1.48}
+  .story-line.vn-box .line-row span{font-size:13px}
+  .interaction-guide{padding:10px 14px 11px 19px}
+  .interaction-guide small{font-size:10px}
+  .interaction-guide strong{font-size:17px}
+  .interaction-guide p{font-size:13px;line-height:1.42}
+  .interaction-guide span{font-size:10px}
+}
 .vn-dialogue .vn-portrait.li>img,.vn-dialogue .vn-portrait.yan>img,.vn-dialogue .vn-portrait.master>img{width:86%;height:94%;margin:6% auto 0;object-fit:contain;object-position:center bottom;transform:none}
 .vn-dialogue[data-scene="1"] .vn-portrait.li>img,.vn-dialogue[data-scene="1"] .vn-portrait.yan>img,.vn-dialogue[data-scene="1"] .vn-portrait.master>img{width:86%;height:94%;margin-top:6%}
 @media(max-width:900px){.vn-dialogue .vn-portrait.li>img,.vn-dialogue .vn-portrait.yan>img,.vn-dialogue .vn-portrait.master>img{width:88%;height:96%;margin-top:4%}}
