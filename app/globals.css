@@ -237,6 +237,38 @@
 /* Polishing is performed on the same green jade object the player sees. */
 .logistics-world .polish-mini{left:56%;top:14%;width:32%;height:65%;background:none;border-radius:0;pointer-events:none}.polish-mini .jade-art{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 20px 23px rgba(0,0,0,.58))}.interaction-polish-cong .polish-drag{z-index:44;left:56%;right:auto;top:14%;bottom:auto;width:32%;height:65%;border-radius:0;clip-path:polygon(8% 20%,92% 20%,100% 84%,86% 96%,15% 96%,0 84%);cursor:crosshair}.interaction-polish-cong .polish-sheen{inset:22% 12% 8%;border-radius:42% 42% 16% 16%;pointer-events:none}
 
+/* The game, rather than the testing frame, owns the viewport. The selector is
+   retained as a single unobtrusive control at the upper left. */
+.app-shell{height:100dvh;min-height:0;padding:0!important;overflow:hidden;background:#0d1211}
+.topbar{position:fixed;z-index:900;left:max(12px,env(safe-area-inset-left));top:max(12px,env(safe-area-inset-top));height:auto;margin:0;pointer-events:none}
+.topbar>div:first-child,.top-actions button:not(.primary){display:none}
+.top-actions{pointer-events:auto}
+.top-actions .primary{padding:8px 12px;border-color:rgba(207,218,199,.32);background:rgba(10,17,14,.78);box-shadow:0 7px 20px rgba(0,0,0,.3);font-size:0!important;backdrop-filter:blur(8px)}
+.top-actions .primary::after{content:"选幕";font:500 14px/1 "Songti SC","STSong",serif;letter-spacing:.12em}
+.stage{margin:0 auto!important;border:0!important;border-radius:0!important;box-shadow:none!important}
+
+/* A final, modest reading lift. It applies only to prose and task instructions,
+   leaving scenic typography and in-world layouts at their original scale. */
+.story-line .line-row p{font-size:17px;line-height:1.62}
+.story-line .line-row span{font-size:12px}
+.interaction-guide small{font-size:10px}
+.interaction-guide strong{font-size:17px}
+.interaction-guide p{font-size:13px;line-height:1.52}
+.interaction-guide span{font-size:11px}
+
+@media(max-width:900px) and (orientation:landscape){
+  .topbar{left:max(8px,env(safe-area-inset-left));top:max(8px,env(safe-area-inset-top))}
+  .top-actions .primary{padding:7px 10px}
+  .top-actions .primary::after{font-size:15px}
+  .story-line.vn-box .line-row p{font-size:22px;line-height:1.46}
+  .story-line.vn-box .line-row span{font-size:14px}
+  .interaction-guide{padding:10px 15px 11px 20px}
+  .interaction-guide small{font-size:11px}
+  .interaction-guide strong{font-size:18px}
+  .interaction-guide p{font-size:15px;line-height:1.4}
+  .interaction-guide span{font-size:11px}
+}
+
 /* The basket relay is anchored to the hands depicted in the dam-worker art. */
 .basket-relay{position:absolute;z-index:44;right:2%;bottom:2%;width:43%;height:72%;touch-action:none;user-select:none}.relay-hand{position:absolute;width:38px;height:30px;transform:translate(-50%,-50%);border:1px solid transparent;border-radius:50%;pointer-events:none;transition:opacity .22s ease,border-color .22s ease,box-shadow .22s ease}.relay-hand.next{border-color:rgba(226,213,171,.56);box-shadow:0 0 0 5px rgba(220,197,132,.06),0 0 13px rgba(224,202,143,.22)}.relay-hand.passed{opacity:.2}.relay-basket{position:absolute;width:52px;height:35px;padding:0;transform:translate(-50%,-50%);border:0;background:transparent;cursor:grab;touch-action:none}.relay-basket:active{cursor:grabbing}.relay-basket i{position:absolute;inset:8px 2px 0;border-radius:6px 6px 42% 42%;background:linear-gradient(180deg,#c19a5f,#725036);box-shadow:inset 0 6px rgba(235,207,145,.22),0 6px 9px rgba(0,0,0,.3)}.relay-basket i::before{content:"";position:absolute;left:7px;right:7px;top:-8px;height:13px;border:3px solid #b88c51;border-bottom:0;border-radius:50% 50% 0 0}.basket-relay.dragging .relay-basket{filter:drop-shadow(0 0 9px rgba(231,207,145,.55));transform:translate(-50%,-50%) scale(1.07)}.basket-relay.complete .relay-basket{filter:brightness(1.2) drop-shadow(0 0 11px rgba(233,210,151,.62))}
 
