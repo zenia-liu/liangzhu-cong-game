@@ -1078,7 +1078,9 @@ function HomeGame() {
     if (!viewport) return;
     const syncScale = () => {
       const availableWidth = viewport.parentElement?.getBoundingClientRect().width ?? window.innerWidth;
-      const availableHeight = Math.max(260, window.innerHeight - 86);
+      // The story stage now owns the whole viewport; reserve no separate
+      // testing chrome when calculating the fixed scene's presentation scale.
+      const availableHeight = Math.max(260, window.visualViewport?.height ?? window.innerHeight);
       viewport.style.setProperty("--stage-scale", String(Math.min(1, availableWidth / 1500, availableHeight / 820)));
     };
     window.addEventListener("resize", syncScale);
