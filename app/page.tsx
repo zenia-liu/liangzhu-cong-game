@@ -48,7 +48,11 @@ const interactionGuides: Record<string, { title: string; instruction: string; ou
 type StrategyValues = { aq: number; ss: number; memory: number; cooperation: number };
 type StrategyEffect = Partial<StrategyValues>;
 
-const baseStrategy: StrategyValues = { aq: 20, ss: 65, memory: 12, cooperation: 35 };
+// All four records now carry through the whole journey.  These are deliberately
+// modest starting points: the ending should be shaped by craft, shared labour,
+// and what the player chooses to remember, rather than by one high default.
+// Water level is a separate, scene-authored pressure and never enters this ledger.
+const baseStrategy: StrategyValues = { aq: 18, ss: 45, memory: 8, cooperation: 25 };
 const clamp = (value: number) => Math.max(0, Math.min(100, Math.round(value)));
 
 function resolveStrategy(effects: Record<string, StrategyEffect>): StrategyValues {
