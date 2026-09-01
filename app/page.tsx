@@ -367,14 +367,30 @@ export function LandscapeGate() {
   const [needsManualRotation, setNeedsManualRotation] = useState(false);
 
   useEffect(() => {
-    const query = window.matchMedia("(max-width: 900px) and (orientation: portrait)");
+    const compactQuery = window.matchMedia("(max-width: 900px)");
+    const portraitQuery = window.matchMedia("(orientation: portrait)");
     const sync = () => {
-      setPortrait(query.matches);
-      if (!query.matches) setNeedsManualRotation(false);
+      // Safari and some embedded browsers do not reliably update the combined
+      // orientation media query. The viewport comparison is the reliable fallback.
+      const isPortrait = compactQuery.matches && (portraitQuery.matches || window.innerHeight > window.innerWidth);
+      setPortrait(isPortrait);
+      if (!isPortrait) setNeedsManualRotation(false);
     };
     sync();
-    query.addEventListener("change", sync);
-    return () => query.removeEventListener("change", sync);
+    compactQuery.addEventListener("change", sync);
+    portraitQuery.addEventListener("change", sync);
+    window.addEventListener("resize", sync);
+    window.addEventListener("orientationchange", sync);
+    screen.orientation?.addEventListener?.("change", sync);
+    window.visualViewport?.addEventListener("resize", sync);
+    return () => {
+      compactQuery.removeEventListener("change", sync);
+      portraitQuery.removeEventListener("change", sync);
+      window.removeEventListener("resize", sync);
+      window.removeEventListener("orientationchange", sync);
+      screen.orientation?.removeEventListener?.("change", sync);
+      window.visualViewport?.removeEventListener("resize", sync);
+    };
   }, []);
 
   const enterLandscape = async () => {
@@ -394,7 +410,7 @@ export function LandscapeGate() {
       // iOS Safari and some embedded browsers require a physical device rotation.
     }
     window.setTimeout(() => {
-      setNeedsManualRotation(window.matchMedia("(max-width: 900px) and (orientation: portrait)").matches);
+      setNeedsManualRotation(window.matchMedia("(max-width: 900px)").matches && window.innerHeight > window.innerWidth);
     }, 450);
   };
 
@@ -604,7 +620,7 @@ function CenterMarkingGame({ onProgress, onComplete }: { onProgress: (value: num
       <span className={`scribe-line diagonal-a ${completed[0] ? "complete" : ""}`} style={{ "--draw": stroke === 0 ? strokeProgress : completed[0] ? 1 : 0 } as React.CSSProperties} />
       <span className={`scribe-line diagonal-b ${completed[1] ? "complete" : ""}`} style={{ "--draw": stroke === 1 ? strokeProgress : completed[1] ? 1 : 0 } as React.CSSProperties} />
       <span className={`scribe-center ${completed[0] && completed[1] ? "visible" : ""}`} />
-      <span className={`scribe-stone ${drawing ? "drawing" : ""}`} style={{ left: `${cursor.x}%`, top: `${cursor.y}%` }}><img src="assets/jade_raw.webp" alt="划线砺石" /></span>
+      <span className={`scribe-stone ${drawing ? "drawing" : ""}`} style={{ left: `${cursor.x}%`, top: `${cursor.y}%` }}><img src="assets/jade_raw.webp" alt="划线砺石" /><b>砺石</b></span>
       {!drawing && strokeProgress === 0 && <small className={`stone-cue cue-${stroke + 1}`}>按住砺石</small>}
       {drawing && <span className="stone-dust" style={{ left: `${cursor.x}%`, top: `${cursor.y}%` }} />}
     </div>
@@ -1038,7 +1054,7 @@ function BasketRelayGame({ onProgress, onComplete }: { onProgress: (value: numbe
   </div>;
 }
 
-export default function Home() {
+function HomeGame() {
   const [scene, setScene] = useState(0), [beat, setBeat] = useState(0), [selector, setSelector] = useState(false);
   const [action, setAction] = useState(0), [pan, setPan] = useState(0), [marks, setMarks] = useState<number[]>([]), [substep, setSubstep] = useState(0);
   const [dialogueLine, setDialogueLine] = useState(0);
@@ -1250,4 +1266,8 @@ export default function Home() {
 
   const visibleLine = !workshopIntro && current?.kind === "dialogue" ? current.lines[dialogueLine] : null;
   return <main className="app-shell"><header className="topbar"><div><p className="eyebrow">良渚玉琮王 · 横屏交互预览</p><h1>众手成琮</h1></div><div className="top-actions"><button onClick={() => goScene(scene)}>重置本幕</button><button className="primary" onClick={() => setSelector(true)}>选幕预览 · {String(scene + 1).padStart(2, "0")}</button></div></header><section className={`stage ${strategy.ss < 60 ? "stability-low" : ""}`}><div className={`scene-slate ${beat === 0 ? "visible" : ""}`}><span>{scenes[scene].act} · {scenes[scene].place}</span><h2>{scenes[scene].title}</h2></div>{world()}{scene > 0 && !transition && <StrategyHUD values={strategy} flood={floodPressure} />}{current?.kind === "interaction" && <InteractionGuide id={interactionId} detail={guideDetail()} scene={scene} />}{visibleLine && <StoryLine key={`${scene}-${beat}-${dialogueLine}`} line={visibleLine} opening={scene === 0} scene={scene} onNext={nextDialogueLine} />}{feedback && <div className="interaction-feedback">{feedback}</div>}{strategyFeedback && <div className="strategy-feedback">{strategyFeedback}</div>}{done && scene < 10 && <button className="scene-complete" onClick={advanceScene} aria-label="进入下一幕"><i /></button>}{transition && <div className={`time-transition ${transition}`} aria-live="polite"><div className="transition-object"><JadeImage variant="final" /></div><div className="transition-copy"><small>{transition === "to-past" ? "纹饰沉入阴影" : "土层合拢，时间继续"}</small><strong>{transition === "to-past" ? "五千年前 · 水边玉作工坊" : "1986 · 反山 M12"}</strong></div><div className="transition-rings" /></div>}<div className="beat-dots" aria-hidden="true">{scripts[scene].map((_, index) => <i key={index} className={index < beat ? "past" : index === beat ? "now" : ""} />)}</div><div className="stage-nav"><button disabled={scene === 0} onClick={() => goScene(scene - 1)}>←</button><button onClick={() => setSelector(true)}>{scene + 1} / {scenes.length}</button><button disabled={scene === 10} onClick={() => goScene(scene + 1)}>→</button></div></section>{selector && <div className="selector-backdrop" role="button" tabIndex={0} onClick={event => { if (event.target === event.currentTarget) setSelector(false); }} onKeyDown={event => { if (event.key === "Escape" || event.key === "Enter") setSelector(false); }}><section className="selector"><header><div><span>DIRECTOR&apos;S PREVIEW</span><h2>选择一幕直接体验</h2><p>数值会随本次体验继续保留；点击“新开一局”可清空全部策略记录。</p></div><div className="selector-actions"><button onClick={() => { setEffects({}); setChoice1(null); setChoice2(null); goScene(0); }}>新开一局</button><button onClick={() => setSelector(false)}>关闭</button></div></header><div className="scene-grid">{scenes.map((item, index) => <button key={item.title} className={scene === index ? "active" : ""} onClick={() => goScene(index)}><i>{String(index + 1).padStart(2, "0")}</i><span>{item.act}</span><h3>{item.title}</h3><p>{item.place} · {scripts[index].filter(beat => beat.kind === "interaction").length}项互动</p></button>)}</div></section></div>}</main>;
+}
+
+export default function Home() {
+  return <><HomeGame /><LandscapeGate /></>;
 }
