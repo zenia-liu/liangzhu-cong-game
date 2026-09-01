@@ -974,3 +974,17 @@ html,body,#root{width:100%;min-height:100%}body{overscroll-behavior:none}.landsc
   .ridge-status,.carving-status,.stroke-note{font-size:18px}.crack-light-copy b,.station-copy b,.rain-copy b{font-size:20px}.crack-light-copy span,.station-copy span,.rain-copy span{font-size:17px}
   .carving-stones button span,.station-tools button span{font-size:17px}.grind-tools button span,.dual-cut>button span,.basket-chain button span,.boat-check button span,.cong-taps button span{font-size:16px}
 }
+
+/* Keep the overall reading layer restrained; promote only the drill's local
+   action copy, which sits beside the worker and needs its own mobile scale. */
+@media(max-width:900px) and (orientation:landscape){
+  .story-line.vn-box .line-row p{font-size:23px}.story-line.vn-box .line-row span{font-size:15px}
+  .interaction-guide strong{font-size:19px}.interaction-guide p{font-size:15px}.interaction-guide small,.interaction-guide span{font-size:12px}
+  .strategy-pressure,.strategy-values>div{font-size:16px}.strategy-values strong{font-size:20px}
+  .strategy-feedback{font-size:17px}.interaction-feedback{font-size:20px}
+  .scratch-progress,.inspection-bridge{font-size:15px}
+  .ridge-status,.carving-status,.stroke-note{font-size:16px}
+  .crack-light-copy b,.station-copy b,.rain-copy b{font-size:18px}.crack-light-copy span,.station-copy span,.rain-copy span{font-size:15px}
+  .drilling-world.interaction-join-bore .drill-howto{min-width:210px;padding:10px 14px;font-size:18px;line-height:1.15}
+  .drilling-world.interaction-join-bore .drill-phase{padding:7px 11px;font-size:16px;line-height:1.15}
+}
