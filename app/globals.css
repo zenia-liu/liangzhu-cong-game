@@ -109,7 +109,6 @@
 .workshop-close{background-size:230% auto;background-position:42% 47%;filter:saturate(.78) brightness(.7)}
 .art-character{position:absolute;z-index:10;object-fit:contain;filter:drop-shadow(0 18px 20px rgba(0,0,0,.4));transition:opacity .45s,transform .6s}
 .li-look{height:47%;left:41%;bottom:7%;opacity:.9}.yan-watch{height:55%;left:29%;bottom:5%;opacity:.9}
-.flood-atmosphere{position:absolute;z-index:8;inset:0;background-image:url('/assets/weather_flood_layer.webp');background-size:175% auto;background-position:60% 9%;opacity:.16;mix-blend-mode:screen;pointer-events:none}
 .scroll-world.art-world .rain-lines{z-index:9;opacity:.25}
 .scroll-world.art-world::before,.workshop-world.art-world::before,.drilling-world.art-world::before,.grind-world.art-world::before,.carve-world.art-world::before,.logistics-world.art-world::before,.return-world.art-world::before{content:"";position:absolute;z-index:7;left:-2%;right:-2%;top:68%;height:13%;background:linear-gradient(180deg,rgba(52,46,35,.2),rgba(39,35,28,.78),rgba(52,46,35,.24));filter:blur(5px);pointer-events:none}
 
@@ -131,7 +130,6 @@
 .master-stand-art{position:absolute;z-index:8;left:5%;bottom:2%;height:57%;object-fit:contain;mix-blend-mode:multiply;opacity:.84;filter:drop-shadow(0 22px 20px rgba(0,0,0,.5))}
 .carve-world.art-world .carve-cong{z-index:15}.carve-world.art-world .carver-hand{z-index:16}
 .logistics-close{background-position:10% 48%;filter:saturate(.69) brightness(.46) blur(1px);transform:scale(1.04)}
-.flood-atmosphere.strong{z-index:9;opacity:.3;background-size:145% auto}
 .carry-workers-art{position:absolute;z-index:11;left:4%;bottom:1%;height:59%;width:35%;object-fit:contain;filter:drop-shadow(0 22px 20px rgba(0,0,0,.5))}
 .logistics-world.art-world .split-water,.logistics-world.art-world .dam-mini,.logistics-world.art-world .polish-mini{z-index:13}
 .return-close{background-position:0 50%;filter:saturate(.48) brightness(.32) blur(1.3px);transform:scale(1.04)}
@@ -534,7 +532,7 @@ html,body,#root{width:100%;min-height:100%}body{overscroll-behavior:none}.landsc
 .strategy-decision button{position:relative;display:grid;align-content:start;min-height:94px;padding:12px 13px;border:1px solid rgba(208,218,207,.14);border-radius:10px;background:rgba(255,255,255,.035);color:#eae4d6;text-align:left;transition:.2s}
 .strategy-decision button:hover,.strategy-decision button:focus-visible{transform:translateY(-2px);border-color:rgba(146,184,163,.56);background:rgba(91,129,108,.17);outline:none}.strategy-decision button strong{font:500 14px "Songti SC","STSong",serif}.strategy-decision button span{margin-top:6px;color:#aab4ad;font-size:10px;line-height:1.5}.strategy-decision button em{margin-top:8px;color:#8eb29d;font-size:9px;font-style:normal}.strategy-decision>p{margin:10px 0 0;color:#7f8c84;font-size:9px;text-align:center}
 .rhythm-meter{position:absolute;left:50%;top:12%;width:150px;height:25px;transform:translateX(-50%);overflow:hidden;border-radius:999px;background:rgba(9,14,12,.72);color:#b8c1ba;font-size:8px;text-align:center;line-height:25px}.rhythm-meter i{position:absolute;left:8px;top:4px;width:17px;height:17px;border-radius:50%;background:#b9d0c1;box-shadow:0 0 12px rgba(185,208,193,.58);animation:rhythm-pendulum 1.04s ease-in-out infinite alternate}.rhythm-meter span{margin-left:20px}@keyframes rhythm-pendulum{from{transform:translateX(0)}to{transform:translateX(117px)}}
-.stability-low .flood-atmosphere{opacity:.78!important}.stability-low .rain-lines{opacity:.62}.stability-low .scene-cinematic-shade{background:linear-gradient(90deg,rgba(7,12,10,.38),rgba(7,12,10,.05),rgba(63,34,24,.24))}
+.stability-low .rain-lines{opacity:.62}.stability-low .scene-cinematic-shade{background:linear-gradient(90deg,rgba(7,12,10,.38),rgba(7,12,10,.05),rgba(63,34,24,.24))}
 .selector-actions{display:flex;gap:8px}.selector-actions button:first-child{border-color:rgba(142,180,159,.36);color:#bfd4c8}
 .collection-card .result-values{display:flex;gap:7px;margin:9px 0!important}.collection-card .result-values span{padding:5px 8px!important;border:1px solid rgba(231,221,194,.16);border-radius:999px;background:rgba(0,0,0,.13);color:#b9c2ba!important;font-size:8px!important}.collection-card .result-values b{margin-left:4px;color:#f1e6cb;font-size:10px}
 
@@ -987,4 +985,71 @@ html,body,#root{width:100%;min-height:100%}body{overscroll-behavior:none}.landsc
   .crack-light-copy b,.station-copy b,.rain-copy b{font-size:18px}.crack-light-copy span,.station-copy span,.rain-copy span{font-size:15px}
   .drilling-world.interaction-join-bore .drill-howto{min-width:210px;padding:10px 14px;font-size:18px;line-height:1.15}
   .drilling-world.interaction-join-bore .drill-phase{padding:7px 11px;font-size:16px;line-height:1.15}
+}
+
+/* Scene one uses the cabinet already painted into the museum background.  The
+   jade now rests on its illuminated shelf instead of sitting inside a second,
+   code-drawn case. */
+.museum-world.art-world.exhibit-overview .hero-cong.artifact-hero{
+  right:20%;top:42.5%;width:235px;height:220px;
+  filter:drop-shadow(0 10px 11px rgba(0,0,0,.58)) brightness(.8)
+}
+.museum-world.exhibit-overview .exhibit-cong-hotspot{right:19.5%;top:40%;width:245px;height:250px}
+.museum-world.exhibit-overview .exhibit-caption{right:18.9%;top:73%}
+
+/* The four readings follow the real hierarchy of one divine-beast face rather
+   than an even vertical menu: crown, human face, beast face, then talons. */
+.interaction-trace-motif .motif-trace-points{right:15%;top:27%;width:390px;height:350px}
+.interaction-trace-motif .motif-trace-points button:nth-child(1){left:46%;top:6%}
+.interaction-trace-motif .motif-trace-points button:nth-child(2){left:45%;top:29%}
+.interaction-trace-motif .motif-trace-points button:nth-child(3){left:31%;top:57%}
+.interaction-trace-motif .motif-trace-points button:nth-child(4){left:60%;top:76%}
+.interaction-trace-motif .motif-trace-points .gesture{left:47%;top:28%}
+.interaction-locate-faces .face-location-grid button:nth-child(1){left:15%;top:24%}
+.interaction-locate-faces .face-location-grid button:nth-child(2){left:47%;top:18%}
+.interaction-locate-faces .face-location-grid button:nth-child(3){right:12%;top:29%}
+.interaction-locate-faces .face-location-grid button:nth-child(4){left:10%;top:65%}
+.interaction-locate-faces .face-location-grid button:nth-child(5){left:46%;top:72%}
+.interaction-locate-faces .face-location-grid button:nth-child(6){right:9%;top:60%}
+
+/* Every lower-left task card stays luminous and readable, including scene two. */
+.interaction-guide,.interaction-guide[data-scene="0"],.interaction-guide[data-scene="1"],.interaction-guide[data-scene="10"]{
+  background:linear-gradient(145deg,rgba(21,43,32,.97),rgba(9,22,16,.98))!important;
+  border-color:rgba(209,225,202,.42)!important;
+  box-shadow:0 16px 34px rgba(0,0,0,.5),inset 0 1px rgba(245,248,222,.16)!important;
+  opacity:1!important
+}
+.interaction-guide small{color:#b6dec6!important}.interaction-guide strong{color:#fff4d8!important}.interaction-guide p{color:#f1f4e9!important}.interaction-guide span{color:#c5d9cb!important;border-top-color:rgba(224,236,211,.24)!important}
+
+/* Local interaction copy is deliberately larger and always sits on an opaque,
+   high-contrast surface; dialogue and the task card retain their existing scale. */
+.drill-howto,.drill-phase,.abrasive-status,.abrasive-flash,.abrasive-result,.ridge-status,.touch-start,.carving-status,.stroke-note,.crack-light-copy,.station-copy,.rain-copy,.rain-drop span,.carving-stones button span,.station-tools button span,.grind-tools button span,.dual-cut>button span,.basket-chain button span,.boat-check button span,.cong-taps button span,.face-location-grid button span,.motif-trace-points button span{
+  text-shadow:0 2px 5px rgba(0,0,0,.9)
+}
+.drill-howto{font-size:15px;background:rgba(6,13,10,.96);border-color:rgba(239,230,196,.48)}
+.drill-phase{font-size:13px;background:rgba(6,13,10,.94);color:#f5edda}
+.abrasive-status,.ridge-status,.carving-status,.stroke-note{font-size:14px;background:rgba(7,14,11,.94);border-color:rgba(230,220,187,.35)}
+.abrasive-status em,.abrasive-result span,.touch-start,.raking-light::before,.station-copy span,.crack-light-copy span,.rain-copy span{font-size:13px;color:#e5eadf}
+.abrasive-flash{font-size:14px;background:rgba(6,13,10,.96)}
+.rain-drop span,.carving-stones button span,.station-tools button span,.grind-tools button span,.dual-cut>button span,.basket-chain button span,.boat-check button span,.cong-taps button span{font-size:13px;color:#fff1d4}
+.motif-trace-points button span,.face-location-grid button span{font-size:12px;color:#fff0ca}
+
+/* Turning to the second drilling end deserves a tangible jade blank, not a
+   thumbnail in the centre of an otherwise empty scene. */
+.drilling-world.interaction-flip-blank .flip-blank-drag{width:450px;height:310px;top:43%}
+.drilling-world.interaction-flip-blank .jade-object-motion{left:30%;top:30%;width:170px;height:160px}
+.drilling-world.interaction-flip-blank .jade-object-motion .jade-art{inset:-22%;width:144%;height:144%;filter:drop-shadow(0 18px 18px rgba(0,0,0,.5))}
+.drilling-world.interaction-flip-blank .flip-blank-drag::before{left:19%;top:76%;width:250px;height:28px}
+
+@media(max-width:900px) and (orientation:landscape){
+  .drill-howto{font-size:18px}.drill-phase{font-size:16px}
+  .abrasive-status,.ridge-status,.carving-status,.stroke-note{font-size:16px}
+  .abrasive-status em,.abrasive-result span,.touch-start,.raking-light::before,.station-copy span,.crack-light-copy span,.rain-copy span{font-size:15px}
+  .abrasive-flash{font-size:16px}
+  .rain-drop span,.carving-stones button span,.station-tools button span,.grind-tools button span,.dual-cut>button span,.basket-chain button span,.boat-check button span,.cong-taps button span{font-size:15px}
+  .motif-trace-points button span,.face-location-grid button span{font-size:14px}
+  .museum-world.art-world.exhibit-overview .hero-cong.artifact-hero{right:19%;top:42%;width:225px;height:210px}
+  .museum-world.exhibit-overview .exhibit-cong-hotspot{right:18.5%;top:39%;width:235px;height:240px}
+  .drilling-world.interaction-flip-blank .flip-blank-drag{width:410px;height:285px;top:42%}
+  .drilling-world.interaction-flip-blank .jade-object-motion{width:155px;height:145px}
 }
