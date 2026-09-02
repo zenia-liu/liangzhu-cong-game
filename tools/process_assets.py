@@ -8,7 +8,7 @@ ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / "demo" / "public" / "assets"
 OUT.mkdir(parents=True, exist_ok=True)
 
-for name in ["bg_museum_hall.png", "bg_workshop_scroll.png", "weather_flood_layer.png"]:
+for name in ["bg_museum_hall.png", "bg_workshop_scroll.png"]:
     copy2(ROOT / name, OUT / name)
 
 
